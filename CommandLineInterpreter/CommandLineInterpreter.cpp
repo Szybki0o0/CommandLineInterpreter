@@ -1,20 +1,25 @@
-// CommandLineInterpreter.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <filesystem>
+#include "Command.h"
+
+using namespace std;
+namespace fs = std::filesystem;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    cout << "Mikroopro Okna [Version 1.2137.420]" << endl;
+    cout << "(c) Bill Gates Corporation. All rights reserved." << "\n\n";
+    fs::path dP = "C:\\Users\\konio";
+    fs::path test = "C:\\Games";
+    PrintPath p;
+    ChangeDirectory c(dP);
+    c.execute();
+
+    fs::path currentPath ;
+    for (;;)
+    {
+        p.execute();
+        cout << ">";
+        cin >> currentPath;
+    }
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
