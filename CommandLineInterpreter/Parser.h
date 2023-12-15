@@ -17,7 +17,9 @@ public:
 
 	string getKeyWord(string command);
 
-	string getContent(string command);
+	string getFirstContent(string command);
+
+	string getSecondContent(string command);
 
 	bool isACommand(string command);
 };

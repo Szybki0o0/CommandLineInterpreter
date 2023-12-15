@@ -4,7 +4,7 @@
 
 using namespace std;
 
-string commands[] = { "cd", "dir"};
+string commands[] = { "cd", "dir", "mkdir", "copy", "help", "rmdir"};
 
 Parser::Parser(const string& command) : fcommand(command) {}
 
@@ -23,13 +23,25 @@ string Parser::getKeyWord(string command)
 	return temp;
 }
 
-string Parser::getContent(string command)
+string Parser::getFirstContent(string command)
 {
 	string temp;
 	int breakPoint = 0;
 	for (auto i : command)
 	{
 		if (breakPoint == 1) temp += i;		
+		if (i == ' ') breakPoint = 1;
+	}
+	return temp;
+}
+
+string Parser::getSecondContent(string command)
+{
+	string temp;
+	int breakPoint = 0;
+	for (auto i : command)
+	{
+		if (breakPoint == 1) temp += i;
 		if (i == ' ') breakPoint = 1;
 	}
 	return temp;

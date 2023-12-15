@@ -17,6 +17,10 @@ int main()
     PrintPath p;
     ChangeDirectory c(dP);
     Parser par("test"); 
+    PrintDirectory d;
+    CreateDirectory cr("test");
+    CopyDirectory co("test", "test");
+    RemoveDirectory rm("test");
     c.execute();
     //string test;
     string comm = par.getCommand();
@@ -30,13 +34,34 @@ int main()
         getline(cin, currentCommand);
         //par.setCommand(currentCommand);
         string keyWord = par.getKeyWord(currentCommand);
-        fs::path content = par.getContent(currentCommand);
+        fs::path firstContent = par.getFirstContent(currentCommand);
+        fs::path secondContent = par.getSecondContent(currentCommand);
         //cout << par.getCommand();
         if (par.isACommand(keyWord))
         {          
             if (keyWord == "cd") { 
-                c.setDir(content);
+                c.setDir(firstContent);
                 c.execute(); 
+            }
+            else if (keyWord == "dir")
+            {
+                d.execute();
+            }
+            else if (keyWord == "mkdir")
+            {
+                cr.setName(firstContent);
+                cr.execute();
+            }
+            else if (keyWord == "rmdir")
+            {
+                rm.setName(firstContent);
+                rm.execute();
+            }
+            else if (keyWord == "copy")
+            {
+                co.setSourceName(firstContent);
+                co.setDestinationName(secondContent);
+                co.execute();
             }
         }
         else if (!currentCommand.empty())
