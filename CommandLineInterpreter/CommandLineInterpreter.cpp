@@ -13,20 +13,29 @@ int main()
     cout << "Mikroopro Okna [Version 1.2137.420]" << endl;
     cout << "(c) Bill Gates Corporation. All rights reserved." << "\n\n";
     fs::path dP = "C:\\Users\\konio";
+    fs::path t = "C:\\Users\\konio\\test";
     fs::path test = "C:\\Games";
     PrintPath p;
     ChangeDirectory c(dP);
     Parser par("test"); 
     PrintDirectory d;
     CreateDirectory cr("test");
-    CopyDirectory co("test", "test");
+    CopyFile co("test", "test");
     RemoveDirectory rm("test");
+    Help h("test");
     c.execute();
     //string test;
     string comm = par.getCommand();
-    string currentCommand;
+    string currentCommand = "copy test.txt test";
     //cout << par.getKeyWord(comm);
     //cout << par.isACommand("cdasda");
+    //cout << test.string();
+    //fs::copy(R"(test.txt)", R"(test)");
+    /*fs::path firstContent = par.getFirstContent(currentCommand);
+    fs::path secondContent = par.getSecondContent(currentCommand);
+    co.setSourceName(firstContent);
+    co.setDestinationName(secondContent);
+    cout << firstContent.string() + secondContent.string();*/
     for (;;)
     {
         p.execute();
@@ -62,6 +71,11 @@ int main()
                 co.setSourceName(firstContent);
                 co.setDestinationName(secondContent);
                 co.execute();
+            }
+            else if (keyWord == "help")
+            {
+                h.setName(firstContent);
+                h.execute();
             }
         }
         else if (!currentCommand.empty())

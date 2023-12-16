@@ -29,8 +29,9 @@ string Parser::getFirstContent(string command)
 	int breakPoint = 0;
 	for (auto i : command)
 	{
-		if (breakPoint == 1) temp += i;		
-		if (i == ' ') breakPoint = 1;
+		if (breakPoint == 1) temp += i;
+		else if (breakPoint == 2) { temp.pop_back(); return temp; }
+		if (i == ' ') breakPoint += 1;
 	}
 	return temp;
 }
@@ -41,8 +42,8 @@ string Parser::getSecondContent(string command)
 	int breakPoint = 0;
 	for (auto i : command)
 	{
-		if (breakPoint == 1) temp += i;
-		if (i == ' ') breakPoint = 1;
+		if (breakPoint == 2) temp += i;
+		if (i == ' ') breakPoint += 1;
 	}
 	return temp;
 }

@@ -46,11 +46,11 @@ public:
     void execute() override;
 };
 
-class CopyDirectory : public ICommand {
+class CopyFile : public ICommand {
 private:
     fs::path fsourceName, fdestinationName;
 public:
-    CopyDirectory(const fs::path& sourceName, const fs::path& destinationName);
+    CopyFile(const fs::path& sourceName, const fs::path& destinationName);
 
     void setSourceName(fs::path sourceName);
 
@@ -64,6 +64,17 @@ private:
     fs::path fname;
 public:
     RemoveDirectory(const fs::path& name);
+
+    void setName(fs::path name);
+
+    void execute() override;
+};
+
+class Help : public ICommand {
+private:
+    fs::path fname;
+public:
+    Help(const fs::path& name);
 
     void setName(fs::path name);
 
